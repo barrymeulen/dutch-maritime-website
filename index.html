@@ -55,7 +55,7 @@
     transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
   }
   nav.scrolled { background: rgba(250, 247, 242, 0.98); }
-  .nav-logo { display: block; text-decoration: none; transition: opacity 0.25s var(--ease); }
+  .nav-logo { display: block; text-decoration: none; transition: opacity 0.25s var(--ease); background: var(--paper); }
   .nav-logo:hover { opacity: 0.65; }
   .nav-logo img { height: 40px; width: auto; display: block; mix-blend-mode: multiply; }
   .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
@@ -76,15 +76,9 @@
     font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
     color: #fff; background: var(--ink);
     padding: 11px 28px; text-decoration: none;
-    position: relative; overflow: hidden;
-    transition: transform 0.15s var(--ease);
+    transition: background 0.25s var(--ease), transform 0.15s var(--ease);
   }
-  .nav-cta::before {
-    content: ''; position: absolute; inset: 0; background: var(--orange);
-    transform: translateY(101%); transition: transform 0.35s var(--ease);
-  }
-  .nav-cta span { position: relative; z-index: 1; }
-  .nav-cta:hover::before { transform: translateY(0); }
+  .nav-cta:hover { background: var(--orange); }
   .nav-cta:active { transform: scale(0.98) translateY(1px); }
 
   /* ─── HERO ─── */
