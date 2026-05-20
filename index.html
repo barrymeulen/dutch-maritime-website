@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dutch Maritime — The Consultant & Broker That Works With You</title>
-<meta name="description" content="Port equipment acquisition, marina development and maritime project advisory. Dutch Maritime Consultancy & Commercial Brokers LLC." />
+<title>Dutch Maritime — Consultancy &amp; Commercial Brokers</title>
+<meta name="description" content="Independent maritime advisory and brokerage. Port equipment acquisition, technical maintenance management and maritime project advisory. Dutch Maritime, Dubai." />
 
 <style>
   :root {
@@ -21,498 +21,1032 @@
     --paper-2:     #F1ECE3;
     --line:        #E2DCD0;
     --ff: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: var(--ff); background: var(--paper); color: var(--ink); line-height: 1.55; overflow-x: hidden; }
+  body {
+    font-family: var(--ff);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 999;
+    pointer-events: none;
+    opacity: 0.022;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+  }
 
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: var(--paper); border-bottom: 1px solid var(--line);
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0 56px; height: 72px;
+    background: rgba(250, 247, 242, 0.90);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px; height: 68px;
+    transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
   }
-  .nav-logo {
-    display: inline-flex; flex-direction: column; align-items: flex-start;
-    font-weight: 700; color: var(--orange); line-height: 0.85;
-    text-transform: lowercase; letter-spacing: -0.04em;
-    font-size: 24px; text-decoration: none;
-    transition: opacity 0.2s;
-  }
-  .nav-logo:hover { opacity: 0.75; }
-  .nav-logo .wbar { width: 100%; height: 3px; background: var(--blue); margin: 4px 0 2px; }
-  .nav-links { display: flex; gap: 40px; list-style: none; }
+  nav.scrolled { background: rgba(250, 247, 242, 0.98); }
+  .nav-logo { display: block; text-decoration: none; transition: opacity 0.25s var(--ease); }
+  .nav-logo:hover { opacity: 0.65; }
+  .nav-logo img { height: 40px; width: auto; display: block; mix-blend-mode: multiply; }
+  .nav-links { display: flex; align-items: center; gap: 40px; list-style: none; }
   .nav-links a {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--ink-3); text-decoration: none;
-    transition: color 0.15s;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3); text-decoration: none;
+    transition: color 0.2s var(--ease);
+    position: relative;
   }
-  .nav-links a:hover { color: var(--orange); }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -2px; left: 0;
+    width: 0; height: 1.5px; background: var(--orange);
+    transition: width 0.3s var(--ease);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
   .nav-cta {
     font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    color: #fff; background: var(--blue); padding: 10px 24px;
-    text-decoration: none; transition: background 0.15s;
+    color: #fff; background: var(--ink);
+    padding: 11px 28px; text-decoration: none;
+    position: relative; overflow: hidden;
+    transition: transform 0.15s var(--ease);
   }
-  .nav-cta:hover { background: var(--blue-deep); }
+  .nav-cta::before {
+    content: ''; position: absolute; inset: 0; background: var(--orange);
+    transform: translateY(101%); transition: transform 0.35s var(--ease);
+  }
+  .nav-cta span { position: relative; z-index: 1; }
+  .nav-cta:hover::before { transform: translateY(0); }
+  .nav-cta:active { transform: scale(0.98) translateY(1px); }
 
-  /* ─── SHARED ─── */
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 56px; }
-  section { padding-top: 104px; padding-bottom: 104px; }
-
-  .eyebrow {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--ink-3); margin-bottom: 20px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .eyebrow::before {
-    content: ''; width: 6px; height: 6px; border-radius: 50%;
-    background: var(--orange); flex-shrink: 0;
-  }
-  h2.title {
-    font-weight: 700; font-size: clamp(36px, 4.5vw, 64px);
-    line-height: 0.96; letter-spacing: -0.03em; color: var(--ink);
-  }
-  .btn {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    padding: 14px 32px; text-decoration: none; display: inline-block;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
-  }
-  .btn-solid { color: #fff; background: var(--orange); }
-  .btn-solid:hover { background: var(--orange-deep); }
-  .btn-outline { color: var(--ink); border: 1.5px solid var(--ink); }
-  .btn-outline:hover { color: var(--orange); border-color: var(--orange); }
-
-  /* ─── HERO — full width, left aligned ─── */
+  /* ─── HERO ─── */
   #hero {
     min-height: 100dvh;
-    display: flex; align-items: center;
-    padding-top: 72px;
-    border-bottom: 8px solid var(--blue);
+    padding-top: 68px;
+    display: flex; flex-direction: column;
+    border-bottom: 10px solid var(--blue);
   }
-
-  .hero-left {
-    padding: 96px 56px;
-    display: flex; flex-direction: column; justify-content: center;
-    max-width: 820px;
+  .hero-inner {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 64px;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 72px 60px;
+    width: 100%;
   }
+  .hero-left { display: flex; flex-direction: column; }
   .hero-region {
     font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--ink-3); margin-bottom: 40px;
-    display: flex; align-items: center; gap: 12px;
+    color: var(--ink-3); display: flex; align-items: center; gap: 12px; margin-bottom: 44px;
   }
-  .hero-region::before {
-    content: ''; width: 24px; height: 2px; background: var(--orange);
+  .hero-region::before { content: ''; width: 28px; height: 2px; background: var(--orange); flex-shrink: 0; }
+  .hero-h1 {
+    font-size: clamp(44px, 5.5vw, 80px);
+    font-weight: 700; letter-spacing: -0.035em; line-height: 0.95;
+    color: var(--ink); margin-bottom: 36px;
   }
-
-  .hero-slogan {
-    font-size: clamp(44px, 6vw, 88px);
-    font-weight: 700; letter-spacing: -0.03em; line-height: 0.97;
-    color: var(--ink); margin-bottom: 8px;
-  }
-  .hero-slogan em { font-style: normal; color: var(--orange); }
-
-  .hero-rule { width: 56px; height: 5px; background: var(--blue); margin: 36px 0; }
-
+  .hero-h1 em { font-style: normal; color: var(--orange); }
   .hero-sub {
-    font-size: 18px; color: var(--ink-2); max-width: 560px; line-height: 1.7;
-    margin-bottom: 48px;
+    font-size: 17px; color: var(--ink-2); max-width: 500px;
+    line-height: 1.75; margin-bottom: 48px;
   }
-  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
-  /* ─── SERVICES ─── */
-  #services { background: var(--paper); }
-  .services-header {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: end; margin-bottom: 64px;
+  /* Buttons */
+  .btn {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 15px 36px; text-decoration: none; display: inline-block;
+    position: relative; overflow: hidden;
+    transition: transform 0.15s var(--ease);
   }
-  .services-intro {
-    font-size: 18px; color: var(--ink-2); line-height: 1.7;
-    align-self: end;
+  .btn:active { transform: scale(0.98) translateY(1px); }
+  .btn-solid { color: #fff; background: var(--orange); }
+  .btn-solid::before {
+    content: ''; position: absolute; inset: 0; background: var(--orange-deep);
+    transform: translateX(-101%); transition: transform 0.35s var(--ease);
   }
-  .services-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 0; border: 1px solid var(--line);
+  .btn-solid span { position: relative; z-index: 1; }
+  .btn-solid:hover::before { transform: translateX(0); }
+  .btn-outline { color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn-outline::before {
+    content: ''; position: absolute; inset: 0; background: var(--ink);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s var(--ease);
   }
-  .svc {
-    padding: 48px 40px; border-right: 1px solid var(--line);
+  .btn-outline span { position: relative; z-index: 1; transition: color 0.35s; }
+  .btn-outline:hover::before { transform: scaleX(1); }
+  .btn-outline:hover span { color: #fff; }
+  .btn-white { color: var(--ink); background: #fff; }
+  .btn-white::before {
+    content: ''; position: absolute; inset: 0; background: var(--orange);
+    transform: translateX(-101%); transition: transform 0.35s var(--ease);
+  }
+  .btn-white span { position: relative; z-index: 1; transition: color 0.35s; }
+  .btn-white:hover::before { transform: translateX(0); }
+  .btn-white:hover span { color: #fff; }
+  .btn-ghost-white {
+    color: rgba(255,255,255,0.5); border: 1.5px solid rgba(255,255,255,0.15);
+  }
+  .btn-ghost-white::before {
+    content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.08);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.35s var(--ease);
+  }
+  .btn-ghost-white span { position: relative; z-index: 1; transition: color 0.35s; }
+  .btn-ghost-white:hover::before { transform: scaleX(1); }
+  .btn-ghost-white:hover span { color: #fff; }
+
+  /* Hero bento */
+  .hero-bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    background: var(--line);
+    align-self: stretch;
+    min-height: 360px;
+  }
+  .hb {
+    background: var(--paper-2);
+    padding: 36px 32px;
     display: flex; flex-direction: column;
-    transition: background 0.2s;
+    transition: background 0.3s var(--ease);
   }
-  .svc:last-child { border-right: none; }
-  .svc:hover { background: var(--paper-2); }
-  .svc.featured { background: var(--blue-deep); border-color: var(--blue-deep); }
-  .svc.featured:hover { background: var(--blue); }
-
-  .svc-num {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; margin-bottom: 40px;
+  .hb:hover { background: #EDE8DC; }
+  .hb-dark {
+    background: var(--blue-deep);
+    grid-column: 1;
+    grid-row: 1 / 3;
+    transition: background 0.3s var(--ease);
   }
-  .svc.featured .svc-num { color: var(--orange); }
-  .svc:not(.featured) .svc-num { color: var(--ink-3); }
-
-  .svc-icon { margin-bottom: 28px; flex-shrink: 0; }
-
-  .svc-title {
-    font-weight: 700; font-size: 22px; letter-spacing: -0.015em;
-    line-height: 1.15; margin-bottom: 16px;
+  .hb-dark:hover { background: var(--blue); }
+  .hb-orange { background: var(--orange-tint); }
+  .hb-orange:hover { background: #F5CEAA; }
+  .hb-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-3);
   }
-  .svc.featured .svc-title { color: #fff; }
-  .svc:not(.featured) .svc-title { color: var(--ink); }
-
-  .svc-body {
-    font-size: 14px; line-height: 1.7; flex: 1;
+  .hb-dark .hb-label { color: rgba(255,255,255,0.3); }
+  .hb-orange .hb-label { color: var(--orange-deep); }
+  .hb-title {
+    font-size: 14px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25;
+    color: var(--ink); margin-top: auto; padding-top: 28px;
   }
-  .svc.featured .svc-body { color: rgba(255,255,255,0.6); }
-  .svc:not(.featured) .svc-body { color: var(--ink-2); }
+  .hb-dark .hb-title { color: #fff; font-size: 16px; }
+  .hb-orange .hb-title { color: var(--orange-deep); }
 
-  .svc-list {
-    margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line);
-    display: flex; flex-direction: column; gap: 8px;
+  /* ─── MARQUEE ─── */
+  .marquee-strip {
+    background: var(--orange);
+    border-bottom: 1px solid var(--orange-deep);
+    overflow: hidden; white-space: nowrap; padding: 13px 0;
   }
-  .svc.featured .svc-list { border-color: rgba(255,255,255,0.12); }
-  .svc-list-item {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  .marquee-track {
+    display: inline-flex;
+    animation: marquee 32s linear infinite;
+  }
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 40px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: #fff; padding: 0 40px;
+  }
+  .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.4); flex-shrink: 0; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─── SHARED ─── */
+  .wrap { max-width: 1300px; margin: 0 auto; padding: 0 60px; }
+  .eyebrow {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 16px;
     display: flex; align-items: center; gap: 10px;
   }
-  .svc.featured .svc-list-item { color: rgba(255,255,255,0.35); }
-  .svc:not(.featured) .svc-list-item { color: var(--ink-3); }
-  .svc-list-item::before {
+  .eyebrow::before { content: ''; width: 20px; height: 1.5px; background: var(--orange); flex-shrink: 0; }
+  .sec-title {
+    font-weight: 700; font-size: clamp(34px, 4vw, 58px);
+    line-height: 0.96; letter-spacing: -0.03em; color: var(--ink);
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.16s; }
+  .reveal-d3 { transition-delay: 0.24s; }
+  .reveal-d4 { transition-delay: 0.32s; }
+
+  /* ─── SERVICES ─── */
+  #services { padding: 112px 0; background: var(--paper); }
+  .services-header {
+    display: grid; grid-template-columns: 1.2fr 1fr;
+    gap: 80px; align-items: end; margin-bottom: 64px;
+  }
+  .services-intro { font-size: 16px; color: var(--ink-2); line-height: 1.75; align-self: end; }
+  .services-bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2px;
+    background: var(--line);
+  }
+  .svc {
+    background: var(--paper);
+    padding: 56px 48px;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    transition: background 0.3s var(--ease);
+  }
+  .svc::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle 380px at var(--mx, 60%) var(--my, 60%), rgba(244,122,32,0.05), transparent 68%);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s var(--ease);
+  }
+  .svc:hover::after { opacity: 1; }
+  .svc-01 { grid-row: 1 / 3; background: var(--blue-deep); transition: background 0.3s var(--ease); }
+  .svc-01:hover { background: var(--blue); }
+  .svc-01::after {
+    background: radial-gradient(circle 380px at var(--mx, 60%) var(--my, 60%), rgba(255,255,255,0.04), transparent 68%);
+  }
+  .svc-num {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+  .svc-01 .svc-num { color: var(--orange); }
+  .svc-02 .svc-num, .svc-03 .svc-num { color: var(--ink-3); }
+  .svc-icon { margin-bottom: 28px; flex-shrink: 0; }
+  .svc-title {
+    font-weight: 700; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 16px;
+  }
+  .svc-01 .svc-title { color: #fff; font-size: 24px; }
+  .svc-02 .svc-title, .svc-03 .svc-title { color: var(--ink); }
+  .svc-body { font-size: 14px; line-height: 1.75; flex: 1; }
+  .svc-01 .svc-body { color: rgba(255,255,255,0.5); }
+  .svc-02 .svc-body, .svc-03 .svc-body { color: var(--ink-2); }
+  .svc-tags {
+    margin-top: 32px; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .svc-02 .svc-tags, .svc-03 .svc-tags { border-top-color: var(--line); }
+  .svc-tag {
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .svc-01 .svc-tag { color: rgba(255,255,255,0.28); }
+  .svc-02 .svc-tag, .svc-03 .svc-tag { color: var(--ink-3); }
+  .svc-tag::before {
     content: ''; width: 4px; height: 4px; border-radius: 50%;
     background: var(--orange); flex-shrink: 0;
   }
 
   /* ─── STATS ─── */
-  .stats-bar {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    background: var(--ink);
+  #stats {
+    background: var(--ink); padding: 80px 0;
+    position: relative; overflow: hidden;
   }
-  .stat-cell {
-    padding: 44px 40px;
+  #stats::after {
+    content: ''; position: absolute; left: 0; bottom: 0;
+    width: 100%; height: 6px; background: var(--blue);
+    pointer-events: none;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 0; align-items: end;
+  }
+  .stat-hero-box {
+    padding-right: 64px;
     border-right: 1px solid rgba(255,255,255,0.07);
   }
-  .stat-cell:last-child { border-right: none; }
+  .stat-hero-n {
+    font-size: clamp(72px, 8vw, 120px);
+    font-weight: 700; letter-spacing: -0.04em; line-height: 0.9;
+    color: var(--orange);
+  }
+  .stat-hero-l {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.28); margin-top: 14px; line-height: 1.6;
+  }
+  .stat-box {
+    padding: 0 44px;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+  .stat-box:last-child { border-right: none; }
   .stat-n {
-    font-weight: 700; font-size: 48px; color: var(--orange);
-    line-height: 1; letter-spacing: -0.03em;
+    font-weight: 700; font-size: clamp(36px, 3.5vw, 56px);
+    color: #fff; line-height: 0.9; letter-spacing: -0.03em;
   }
   .stat-l {
     font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-    color: rgba(255,255,255,0.35); margin-top: 10px; line-height: 1.6;
+    color: rgba(255,255,255,0.26); margin-top: 12px; line-height: 1.7;
   }
+
+  /* ─── PILLARS ─── */
+  #pillars {
+    background: var(--paper-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .pillars-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    max-width: 1300px; margin: 0 auto;
+  }
+  .pillar {
+    padding: 64px 44px; border-right: 1px solid var(--line);
+    transition: background 0.3s var(--ease);
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { background: var(--paper); }
+  .pillar-n {
+    font-size: clamp(52px, 5vw, 72px); font-weight: 700; letter-spacing: -0.04em; line-height: 1;
+    color: var(--line); margin-bottom: 28px;
+    transition: color 0.3s var(--ease);
+  }
+  .pillar:hover .pillar-n { color: var(--orange-tint); }
+  .pillar-lbl {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 12px;
+  }
+  .pillar-title {
+    font-size: 18px; font-weight: 700; letter-spacing: -0.01em;
+    color: var(--ink); line-height: 1.2; margin-bottom: 12px;
+  }
+  .pillar-body { font-size: 13px; line-height: 1.7; color: var(--ink-3); }
+
+  /* ─── ABOUT ─── */
+  #about { padding: 112px 0; background: var(--paper); }
+  .about-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: 96px; align-items: start;
+  }
+  .about-lead {
+    font-size: 19px; color: var(--ink-2); line-height: 1.7;
+    margin-top: 28px; margin-bottom: 24px;
+  }
+  .about-body { font-size: 15px; color: var(--ink-2); line-height: 1.8; }
+  .about-body + .about-body { margin-top: 18px; }
+
+  .career-table {
+    width: 100%; border-collapse: collapse;
+    margin-top: 40px; font-size: 13px;
+  }
+  .career-table th {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-3); padding: 0 16px 12px 0; text-align: left;
+    border-bottom: 1.5px solid var(--ink);
+  }
+  .career-table th:last-child { padding-right: 0; }
+  .career-table td {
+    padding: 12px 16px 12px 0; color: var(--ink-2);
+    border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45;
+  }
+  .career-table td:last-child { padding-right: 0; }
+  .career-table td:first-child { color: var(--ink-3); white-space: nowrap; }
+
+  .about-creds {
+    background: var(--paper-2); border: 1px solid var(--line);
+    padding: 32px; margin-bottom: 40px;
+  }
+  .cred-lbl {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 16px;
+  }
+  .cred-item {
+    font-size: 13.5px; font-weight: 700; color: var(--ink); line-height: 1.5;
+    padding: 10px 0; border-bottom: 1px solid var(--line);
+  }
+  .cred-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .cred-sub { font-size: 12px; font-weight: 400; color: var(--ink-3); margin-top: 2px; }
+
+  .expertise-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; border: 1px solid var(--line);
+  }
+  .exp-item {
+    padding: 13px 18px;
+    font-size: 12.5px; font-weight: 700;
+    color: var(--ink-2); border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    display: flex; align-items: center; gap: 10px;
+    transition: background 0.2s var(--ease);
+  }
+  .exp-item:nth-child(2n) { border-right: none; }
+  .exp-item:nth-last-child(-n+2) { border-bottom: none; }
+  .exp-item:hover { background: var(--paper-2); }
+  .exp-item::before {
+    content: ''; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--orange); flex-shrink: 0;
+  }
+
+  /* ─── TRACK RECORD ─── */
+  #track-record { padding: 112px 0; background: var(--paper-2); border-top: 1px solid var(--line); }
+  .tr-header {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: end; margin-bottom: 64px;
+  }
+  .tr-intro { font-size: 16px; color: var(--ink-2); line-height: 1.75; align-self: end; }
+  .tr-item {
+    display: grid; grid-template-columns: 220px 1fr;
+    gap: 40px; align-items: start;
+    padding: 28px 0; border-bottom: 1px solid var(--line);
+  }
+  .tr-item:first-child { border-top: 1px solid var(--line); }
+  .tr-region {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange); line-height: 1.6;
+  }
+  .tr-title {
+    font-size: 15px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 8px;
+  }
+  .tr-body { font-size: 13px; color: var(--ink-3); line-height: 1.65; }
+
+  /* ─── COVERAGE ─── */
+  #coverage { padding: 112px 0; background: var(--paper); border-top: 1px solid var(--line); }
+  .coverage-note {
+    font-size: 15px; color: var(--ink-3); margin-top: 12px; max-width: 560px; line-height: 1.7;
+  }
+  .coverage-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; margin-top: 48px; border: 1px solid var(--line);
+  }
+  .cov-item {
+    padding: 26px 32px; border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    transition: background 0.2s var(--ease);
+  }
+  .cov-item:nth-child(2n) { border-right: none; }
+  .cov-item:nth-last-child(-n+2) { border-bottom: none; }
+  .cov-item:hover { background: var(--paper-2); }
+  .cov-region { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .cov-status {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-3); display: flex; align-items: center; gap: 8px;
+  }
+  .cov-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .cov-primary { background: var(--orange); }
+  .cov-active  { background: var(--blue); }
+  .cov-periodic { background: transparent; border: 1.5px solid var(--ink-3); }
 
   /* ─── CONTACT ─── */
-  #contact { background: var(--paper); }
-  .contact-layout {
+  #contact { padding: 112px 0; background: var(--ink); }
+  #contact .eyebrow { color: var(--orange); }
+  #contact .eyebrow::before { background: var(--orange); }
+  .contact-h2 {
+    font-weight: 700; font-size: clamp(30px, 3.5vw, 50px);
+    line-height: 0.97; letter-spacing: -0.03em; color: #fff;
+    margin-top: 16px; margin-bottom: 0;
+  }
+  .contact-wrap {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 96px; align-items: start; margin-top: 64px;
+    gap: 0; align-items: stretch;
+    border: 1px solid rgba(255,255,255,0.07);
+    margin-top: 64px;
   }
-  .contact-intro { font-size: 17px; color: var(--ink-2); line-height: 1.7; margin-bottom: 40px; }
-  .contact-rows { display: flex; flex-direction: column; }
-  .cr {
-    display: flex; flex-direction: column;
-    padding: 20px 0; border-top: 1px solid var(--line);
+  .contact-left {
+    padding: 60px; border-right: 1px solid rgba(255,255,255,0.07);
+    display: flex; flex-direction: column; justify-content: space-between;
   }
-  .cr:last-child { border-bottom: 1px solid var(--line); }
-  .cr-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
-    text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px;
+  .contact-right { padding: 60px; }
+  .contact-sub {
+    font-size: 16px; color: rgba(255,255,255,0.45);
+    line-height: 1.75; max-width: 420px; margin-top: 24px;
   }
-  .cr-val { font-size: 15px; font-weight: 700; color: var(--ink); text-decoration: none; transition: color 0.15s; }
-  a.cr-val:hover { color: var(--orange); }
-  .cr-sub { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
-
-  .map-addr {
-    background: var(--blue-deep); padding: 28px 32px;
-    font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55);
+  .contact-actions { margin-top: 40px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .contact-reg {
+    margin-top: 48px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.07);
   }
-  .map-addr strong { color: #fff; display: block; margin-bottom: 4px; }
+  .contact-reg-lbl {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.2); margin-bottom: 10px;
+  }
+  .contact-reg-text {
+    font-size: 13px; color: rgba(255,255,255,0.32); line-height: 1.7;
+  }
+  .cd-list { display: flex; flex-direction: column; }
+  .cd-item {
+    padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .cd-item:last-child { border-bottom: none; }
+  .cd-label {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+  .cd-value {
+    font-size: 15px; font-weight: 700; color: #fff; text-decoration: none;
+    transition: color 0.2s var(--ease);
+  }
+  .cd-value:hover { color: var(--orange); }
+  .cd-note { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.5; }
+  .cd-light { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.38); line-height: 1.65; }
 
   /* ─── FOOTER ─── */
   footer {
-    background: var(--ink); padding: 40px 56px;
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 20px;
+    background: var(--ink); padding: 28px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.07);
   }
-  .foot-logo {
-    display: inline-flex; flex-direction: column; align-items: flex-start;
-    font-weight: 700; color: var(--orange); line-height: 0.85;
-    text-transform: lowercase; letter-spacing: -0.04em; font-size: 20px;
+  .footer-l { font-size: 12px; color: rgba(255,255,255,0.28); }
+  .footer-r {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.16);
   }
-  .foot-logo .wbar { width: 100%; height: 2px; background: rgba(255,255,255,0.3); margin: 3px 0 2px; }
-  .foot-copy {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; color: rgba(255,255,255,0.2);
-  }
-  .foot-links { display: flex; gap: 28px; list-style: none; }
-  .foot-links a {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.15s;
-  }
-  .foot-links a:hover { color: var(--orange); }
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: 1100px) {
-    .hero-left { max-width: none; }
+  @media (max-width: 1024px) {
+    nav { padding: 0 32px; }
+    .nav-links { gap: 24px; }
+    .wrap { padding: 0 32px; }
+    .hero-inner { grid-template-columns: 1fr; padding: 60px 32px; gap: 48px; }
+    .hero-bento { min-height: 280px; }
     .services-header { grid-template-columns: 1fr; gap: 24px; }
-    .about-layout { grid-template-columns: 1fr; gap: 56px; }
-    .contact-layout { grid-template-columns: 1fr; gap: 56px; }
-    .stats-bar { grid-template-columns: 1fr 1fr; }
-    .stat-cell { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .services-bento { grid-template-columns: 1fr; }
+    .svc-01 { grid-row: auto; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 48px 0; }
+    .stat-hero-box { padding-right: 0; border-right: none; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.07); grid-column: 1 / 3; }
+    .stat-box { padding: 0 32px; }
+    .pillars-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; gap: 64px; }
+    .tr-header { grid-template-columns: 1fr; gap: 24px; }
+    .tr-item { grid-template-columns: 160px 1fr; gap: 24px; }
+    .contact-wrap { grid-template-columns: 1fr; }
+    .contact-left { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    footer { padding: 24px 32px; flex-direction: column; gap: 8px; text-align: center; }
   }
-  @media (max-width: 768px) {
-    nav { padding: 0 24px; }
-    .nav-links { display: none; }
-    .wrap { padding: 0 24px; }
-    section { padding-top: 72px; padding-bottom: 72px; }
-    .hero-left { padding: 64px 24px; }
-    .services-grid { grid-template-columns: 1fr; border: none; gap: 2px; background: var(--line); }
-    .svc { border-right: none; border-bottom: 1px solid var(--line); }
-    footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
-  }
-  @media (max-width: 480px) {
-    .stats-bar { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 640px) {
+    .hero-h1 { font-size: clamp(38px, 10vw, 56px); }
+    .hero-bento { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .hb-dark { grid-column: auto; grid-row: auto; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .pillar { border-right: none; border-bottom: 1px solid var(--line); }
+    .pillar:last-child { border-bottom: none; }
+    .tr-item { grid-template-columns: 1fr; gap: 8px; }
+    .coverage-grid { grid-template-columns: 1fr; }
+    .cov-item { border-right: none; }
+    .cov-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .cov-item:last-child { border-bottom: none; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .exp-item { border-right: none; }
+    .exp-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--line); }
+    .exp-item:last-child { border-bottom: none; }
+    .contact-left, .contact-right { padding: 40px 24px; }
+    footer { padding: 20px 24px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ─── NAV ─── -->
-<nav>
-  <a href="#hero" class="nav-logo">
-    <span>dutch</span>
-    <span class="wbar"></span>
-    <span>maritime</span>
+<!-- NAV -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#">
+    <img src="logo.jpg" alt="Dutch Maritime" />
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#track-record">Track record</a></li>
+    <li><a href="#contact" class="nav-cta"><span>Get in touch</span></a></li>
   </ul>
-  <a href="mailto:BME@dutch-maritime.com" class="nav-cta">Get in touch</a>
 </nav>
 
-
-<!-- ─── HERO ─── -->
+<!-- HERO -->
 <section id="hero">
-
-  <!-- left: copy -->
-  <div class="hero-left">
-    <div class="hero-region">Gulf · MENA · International</div>
-
-    <h1 class="hero-slogan">
-      The consultant<br/>
-      &amp; broker that<br/>
-      <em>works with you.</em>
-    </h1>
-
-    <div class="hero-rule"></div>
-
-    <p class="hero-sub">
-      Port equipment acquisition, marina development and maritime project
-      advisory. Hands-on expertise applied directly — from first call to final delivery.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#services" class="btn btn-solid">What we do</a>
-      <a href="#contact" class="btn btn-outline">Talk to us</a>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-region">Dubai · UAE &nbsp;·&nbsp; Independent advisory</div>
+      <h1 class="hero-h1">
+        Technical counsel.<br/>
+        <em>Commercial</em><br/>
+        results.
+      </h1>
+      <p class="hero-sub">Independent maritime advisory and brokerage — port equipment acquisition, drydock management and project advisory for owners and operators across the Gulf, MENA, Caspian and East Africa.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-solid"><span>Start a conversation</span></a>
+        <a href="#services" class="btn btn-outline"><span>Our services</span></a>
+      </div>
     </div>
-
-    <p style="margin-top:48px; font-size:15px; line-height:1.75; color:var(--ink-3); max-width:560px; border-top:1px solid var(--line); padding-top:32px;">
-      Dutch Maritime is a private, owner-operated consultancy and brokerage
-      built on three decades of hands-on maritime work — from technical
-      superintendent on dredging projects across the Middle East and Europe,
-      to managing partner in maritime consultancy in Dubai. The experience
-      behind the company is practical, not theoretical.
-    </p>
-  </div>
-
-</section>
-
-
-<!-- ─── SERVICES ─── -->
-<section id="services">
-  <div class="wrap">
-
-    <div class="services-header">
-      <div>
-        <div class="eyebrow">What we do</div>
-        <h2 class="title">Where we add<br/>the most value.</h2>
+    <div class="hero-bento">
+      <div class="hb hb-dark">
+        <div class="hb-label">01 &middot; Services</div>
+        <div class="hb-title">Port &amp; Terminal Equipment Acquisition</div>
       </div>
-      <p class="services-intro">
-        Three focused areas where commercial insight and hands-on technical
-        knowledge are both required — not one or the other.
-      </p>
-    </div>
-
-    <div class="services-grid">
-
-      <!-- 01 Port & Terminal Equipment Acquisition — featured -->
-      <div class="svc featured">
-        <div class="svc-num">01 · Primary focus</div>
-        <div class="svc-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <rect x="4" y="30" width="40" height="12" rx="1" stroke="#F47A20" stroke-width="2.2"/>
-            <path d="M9 30 L9 19 L24 13 L39 19 L39 30" stroke="#F47A20" stroke-width="2.2" stroke-linejoin="round"/>
-            <path d="M18 30 L18 21 L30 21 L30 30" stroke="rgba(255,255,255,0.25)" stroke-width="1.8" stroke-linejoin="round"/>
-            <path d="M24 13 L24 6" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M21 8 L24 6 L27 8" stroke="#F47A20" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="svc-title">Port &amp; Terminal<br/>Equipment Acquisition</div>
-        <div class="svc-body">
-          We help clients buy the right equipment for port and terminal
-          operations. Tugs, mobile harbour cranes, terminal handling equipment
-          and port automation systems — we know the market, the manufacturers
-          and what each asset is worth.<br/><br/>
-          From spec to survey to contract, we represent your side only.
-        </div>
-        <div class="svc-list">
-          <div class="svc-list-item">Tugs &amp; harbour vessels</div>
-          <div class="svc-list-item">Mobile harbour cranes</div>
-          <div class="svc-list-item">Terminal handling equipment</div>
-          <div class="svc-list-item">Port automation systems</div>
-          <div class="svc-list-item">Technical due diligence</div>
-        </div>
+      <div class="hb hb-orange">
+        <div class="hb-label">02 &middot; Services</div>
+        <div class="hb-title">Technical Maintenance Management</div>
       </div>
-
-      <!-- 02 Marina Development -->
-      <div class="svc">
-        <div class="svc-num">02</div>
-        <div class="svc-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="10" stroke="#F47A20" stroke-width="2.2"/>
-            <path d="M24 14 L24 8" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M24 40 L24 34" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M14 24 L8 24" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M40 24 L34 24" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M17 17 L13 13" stroke="#1067AA" stroke-width="2" stroke-linecap="round"/>
-            <path d="M35 35 L31 31" stroke="#1067AA" stroke-width="2" stroke-linecap="round"/>
-            <path d="M31 17 L35 13" stroke="#1067AA" stroke-width="2" stroke-linecap="round"/>
-            <path d="M17 31 L13 35" stroke="#1067AA" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="24" cy="24" r="3" fill="#F47A20"/>
-          </svg>
-        </div>
-        <div class="svc-title">Technical Maintenance<br/>Management</div>
-        <div class="svc-body">
-          Drydocking, repairs and modification of existing systems and equipment.
-          We manage the full scope — from planning through yard supervision to
-          return to service. Hydraulic systems, control systems, mechanical
-          upgrades and parts sourcing across global supply chains.
-        </div>
-        <div class="svc-list">
-          <div class="svc-list-item">Drydock planning &amp; supervision</div>
-          <div class="svc-list-item">Repairs &amp; modifications</div>
-          <div class="svc-list-item">Hydraulic &amp; control systems</div>
-          <div class="svc-list-item">Parts sourcing</div>
-          <div class="svc-list-item">Return-to-service management</div>
-        </div>
+      <div class="hb">
+        <div class="hb-label">03 &middot; Services</div>
+        <div class="hb-title">Maritime Project Advisory</div>
       </div>
-
-      <!-- 03 Maritime Project Advisory -->
-      <div class="svc">
-        <div class="svc-num">03</div>
-        <div class="svc-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-            <path d="M5 32 L11 20 L24 26 L37 14 L43 20" stroke="#1067AA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M5 38 L43 38" stroke="#1067AA" stroke-width="2.2" stroke-linecap="round"/>
-            <circle cx="24" cy="19" r="5" stroke="#F47A20" stroke-width="2.2"/>
-            <path d="M24 16.5 L24 19 L25.5 20.5" stroke="#F47A20" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="svc-title">Maritime Project<br/>Advisory</div>
-        <div class="svc-body">
-          Project management, technical review, yard and port interface — the
-          consultancy that sits outside standard broking. If you need someone
-          who understands both the commercial side and the vessel, that is us.
-        </div>
-        <div class="svc-list">
-          <div class="svc-list-item">Project management</div>
-          <div class="svc-list-item">Technical review</div>
-          <div class="svc-list-item">Yard &amp; port liaison</div>
-          <div class="svc-list-item">Vessel &amp; equipment brokerage</div>
-          <div class="svc-list-item">Commercial representation</div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-
-<!-- ─── STATS ─── -->
-<div class="stats-bar">
-  <div class="stat-cell">
-    <div class="stat-n">30+</div>
-    <div class="stat-l">Years maritime<br/>experience</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">3</div>
-    <div class="stat-l">Continents<br/>of project work</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">MENA</div>
-    <div class="stat-l">Primary region —<br/>Gulf · Caspian · Africa</div>
-  </div>
-  <div class="stat-cell">
-    <div class="stat-n">1</div>
-    <div class="stat-l">Point of contact.<br/>Start to finish.</div>
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-item">Port Equipment <span class="marquee-dot"></span> Mobile Harbour Cranes <span class="marquee-dot"></span> Drydock Management <span class="marquee-dot"></span> Technical Advisory <span class="marquee-dot"></span> Vessel Survey <span class="marquee-dot"></span> S&amp;P Brokerage <span class="marquee-dot"></span> Project Management <span class="marquee-dot"></span> Marine Auditing <span class="marquee-dot"></span> Heavy Lift Supervision <span class="marquee-dot"></span> Towing Surveys <span class="marquee-dot"></span> CSD &amp; TSHD Systems <span class="marquee-dot"></span> Class Survey Coordination</div>
+    <div class="marquee-item">Port Equipment <span class="marquee-dot"></span> Mobile Harbour Cranes <span class="marquee-dot"></span> Drydock Management <span class="marquee-dot"></span> Technical Advisory <span class="marquee-dot"></span> Vessel Survey <span class="marquee-dot"></span> S&amp;P Brokerage <span class="marquee-dot"></span> Project Management <span class="marquee-dot"></span> Marine Auditing <span class="marquee-dot"></span> Heavy Lift Supervision <span class="marquee-dot"></span> Towing Surveys <span class="marquee-dot"></span> CSD &amp; TSHD Systems <span class="marquee-dot"></span> Class Survey Coordination</div>
   </div>
 </div>
 
-
-<!-- ─── CONTACT ─── -->
-<section id="contact">
+<!-- SERVICES -->
+<section id="services">
   <div class="wrap">
-    <div class="eyebrow">Contact</div>
-    <h2 class="title">Let's talk.</h2>
+    <div class="services-header">
+      <div class="reveal">
+        <div class="eyebrow">What we do</div>
+        <h2 class="sec-title">Three disciplines.<br/>One point of contact.</h2>
+      </div>
+      <p class="services-intro reveal reveal-d1">All engagements are scoped, managed and delivered directly by Barry — from first brief to final handover. No junior handoffs, no conflicts of interest.</p>
+    </div>
+    <div class="services-bento">
 
-    <div class="contact-layout">
-      <div>
-        <p class="contact-intro">
-          Got a port, a marina, or a maritime equipment purchase you want to
-          think through? Send us the brief. We give straight answers.
-        </p>
-        <div class="contact-rows">
-          <div class="cr">
-            <span class="cr-label">Email</span>
-            <a href="mailto:BME@dutch-maritime.com" class="cr-val">BME@dutch-maritime.com</a>
-          </div>
-          <div class="cr">
-            <span class="cr-label">Phone</span>
-            <a href="tel:+971505584562" class="cr-val">+971 50 558 4562</a>
-          </div>
-          <div class="cr">
-            <span class="cr-label">Region</span>
-            <span class="cr-val">Gulf · MENA · International</span>
-          </div>
-        </div>
-        <a href="mailto:BME@dutch-maritime.com" class="btn btn-solid" style="margin-top:40px;">Send a message</a>
+      <div class="svc svc-01 reveal">
+        <div class="svc-num">01</div>
+        <svg class="svc-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect x="8" y="13" width="32" height="22" rx="2" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+          <path d="M8 21h32" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+          <path d="M18 13V8M30 13V8" stroke="#F47A20" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 35v5M32 35v5" stroke="rgba(255,255,255,0.18)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3 class="svc-title">Port &amp; Terminal Equipment Acquisition</h3>
+        <p class="svc-body">Full-cycle sourcing, evaluation and acquisition of maritime and port equipment for owners, operators and project developers — mobile harbour cranes, tugs, workboats, terminal handling equipment and dredging plant.</p>
+        <ul class="svc-tags">
+          <li class="svc-tag">Specification development</li>
+          <li class="svc-tag">Market search &amp; vendor shortlisting</li>
+          <li class="svc-tag">Technical evaluation &amp; survey management</li>
+          <li class="svc-tag">Contract negotiation &amp; delivery oversight</li>
+        </ul>
       </div>
 
-      <div class="map-addr" style="background:var(--blue-deep);padding:40px 40px;border:1px solid var(--line);">
-        <strong>Dutch Maritime Consultancy &amp; Commercial Brokers LLC</strong>
-        Office No. 708, Business Village, Block B<br/>
-        PO Box 88898 · Dubai · UAE
+      <div class="svc svc-02 reveal reveal-d1">
+        <div class="svc-num">02</div>
+        <svg class="svc-icon" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <circle cx="22" cy="22" r="13" stroke="#141414" stroke-width="1.5"/>
+          <path d="M22 14v8l5 3" stroke="#F47A20" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="svc-title">Technical Maintenance Management</h3>
+        <p class="svc-body">Oversight and management of vessel and equipment maintenance programmes — drydocking, major repairs, modifications, and return-to-service in UAE and international yards.</p>
+        <ul class="svc-tags">
+          <li class="svc-tag">Drydock planning &amp; on-site supervision</li>
+          <li class="svc-tag">Class survey preparation &amp; coordination</li>
+          <li class="svc-tag">Hydraulic &amp; control system maintenance</li>
+          <li class="svc-tag">Technical due diligence</li>
+        </ul>
+      </div>
+
+      <div class="svc svc-03 reveal reveal-d2">
+        <div class="svc-num">03</div>
+        <svg class="svc-icon" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+          <path d="M8 37 L22 9 L36 37" stroke="#141414" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 28h16" stroke="#F47A20" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="22" cy="9" r="3" fill="#F47A20"/>
+        </svg>
+        <h3 class="svc-title">Maritime Project Advisory</h3>
+        <p class="svc-body">Independent technical and commercial advisory for project sponsors, investors and operators — feasibility, risk review, project management and subcontractor auditing across mining, energy and port development.</p>
+        <ul class="svc-tags">
+          <li class="svc-tag">Project feasibility &amp; risk review</li>
+          <li class="svc-tag">Subcontractor &amp; vendor auditing</li>
+          <li class="svc-tag">Vessel brokerage</li>
+          <li class="svc-tag">Contract review &amp; technical reporting</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-hero-box reveal">
+        <div class="stat-hero-n">30+</div>
+        <div class="stat-hero-l">Years of hands-on maritime<br/>experience across three continents</div>
+      </div>
+      <div class="stat-box reveal reveal-d1">
+        <div class="stat-n">3</div>
+        <div class="stat-l">Continents<br/>covered</div>
+      </div>
+      <div class="stat-box reveal reveal-d2">
+        <div class="stat-n">6</div>
+        <div class="stat-l">Active<br/>geographies</div>
+      </div>
+      <div class="stat-box reveal reveal-d3">
+        <div class="stat-n">100%</div>
+        <div class="stat-l">Vendor<br/>independent</div>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- ─── FOOTER ─── -->
-<footer>
-  <div class="foot-logo">
-    <span>dutch</span>
-    <span class="wbar"></span>
-    <span>maritime</span>
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="pillars-grid">
+    <div class="pillar reveal">
+      <div class="pillar-n">01</div>
+      <div class="pillar-lbl">Value one</div>
+      <div class="pillar-title">Plainspoken.</div>
+      <p class="pillar-body">We speak in shipping terms, not slogans. A fixture is a fixture. A risk is a risk. Clients hire us for clarity.</p>
+    </div>
+    <div class="pillar reveal reveal-d1">
+      <div class="pillar-n">02</div>
+      <div class="pillar-lbl">Value two</div>
+      <div class="pillar-title">Reliable.</div>
+      <p class="pillar-body">Markets move fast and tides don't wait. We answer on time, in writing, with the numbers behind the position.</p>
+    </div>
+    <div class="pillar reveal reveal-d2">
+      <div class="pillar-n">03</div>
+      <div class="pillar-lbl">Value three</div>
+      <div class="pillar-title">Independent.</div>
+      <p class="pillar-body">Private, owner-operated and unaffiliated. No inventory, no agency agreements, no commission from third-party suppliers.</p>
+    </div>
+    <div class="pillar reveal reveal-d3">
+      <div class="pillar-n">04</div>
+      <div class="pillar-lbl">Value four</div>
+      <div class="pillar-title">Maritime.</div>
+      <p class="pillar-body">The sea is the discipline. Built on engine rooms and project sites, before the commercial layer was added on top.</p>
+    </div>
   </div>
-  <span class="foot-copy">&copy; 2026 Dutch Maritime Consultancy &amp; Commercial Brokers LLC · UAE</span>
-  <ul class="foot-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+
+      <div class="reveal">
+        <div class="eyebrow">About</div>
+        <h2 class="sec-title">Three decades at the sharp end.</h2>
+        <p class="about-lead">Dutch Maritime Consultancy &amp; Commercial Brokers LLC is a private, owner-operated advisory and brokerage firm based in Dubai, UAE — licensed under the UAE Department of Economic Development.</p>
+        <p class="about-body">Founded and led by Barry van der Meulen, the firm provides independent technical and commercial advisory from equipment acquisition and drydock management to full maritime project management across the Gulf, MENA, Caspian, East Africa and northwest Europe.</p>
+        <p class="about-body">The founding premise is straightforward: the maritime sector is served by an abundance of vendors but a shortage of genuinely independent advisors. Dutch Maritime holds no inventory, has no agency agreements with equipment manufacturers, and receives no commission from third-party suppliers. Every recommendation is made on technical and commercial merit alone.</p>
+
+        <table class="career-table">
+          <thead>
+            <tr>
+              <th>Period</th>
+              <th>Role</th>
+              <th>Organisation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1997–2008</td><td>Technical Superintendent</td><td>Van Oord / Ballast Nedam</td></tr>
+            <tr><td>2008–2014</td><td>Technical Manager</td><td>Gulf Cobla</td></tr>
+            <tr><td>2014–2016</td><td>Area Manager, MENA</td><td>Jebsen &amp; Jessen</td></tr>
+            <tr><td>2016–2017</td><td>UAE Representative</td><td>Dredgeyard</td></tr>
+            <tr><td>2017–2022</td><td>Founder</td><td>Dredge Maritime Consultancy DWC-LLC</td></tr>
+            <tr><td>2022–present</td><td>Founder &amp; Managing Director</td><td>Dutch Maritime LLC</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="reveal reveal-d1">
+        <div class="about-creds">
+          <div class="cred-lbl">Academic background</div>
+          <div class="cred-item">
+            B.Sc. Mechanical Engineering
+            <div class="cred-sub">Higher Institute of Technology, Haarlem, Netherlands &middot; 1997</div>
+          </div>
+          <div class="cred-item">
+            Executive MBA
+            <div class="cred-sub">Cass Business School, City University of London &middot; 2012</div>
+          </div>
+        </div>
+
+        <div class="eyebrow" style="margin-bottom: 14px;">Technical expertise</div>
+        <div class="expertise-grid">
+          <div class="exp-item">TSHD &amp; CSD systems</div>
+          <div class="exp-item">Backhoe dredgers</div>
+          <div class="exp-item">Hydraulics &amp; winches</div>
+          <div class="exp-item">Deck machinery</div>
+          <div class="exp-item">Pumps &amp; dredge equipment</div>
+          <div class="exp-item">Ship repair oversight</div>
+          <div class="exp-item">Bureau Veritas / DNV</div>
+          <div class="exp-item">BIMCO standards</div>
+          <div class="exp-item">IMDG / SOLAS</div>
+          <div class="exp-item">Incoterms 2020</div>
+          <div class="exp-item">Trade finance &amp; LCs</div>
+          <div class="exp-item">Mobile harbour cranes</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRACK RECORD -->
+<section id="track-record">
+  <div class="wrap">
+    <div class="tr-header">
+      <div class="reveal">
+        <div class="eyebrow">Track record</div>
+        <h2 class="sec-title">Selected engagements.</h2>
+      </div>
+      <p class="tr-intro reveal reveal-d1">A representative selection of completed engagements across sectors and geographies. Further references available on request.</p>
+    </div>
+    <div>
+      <div class="tr-item reveal">
+        <div class="tr-region">Caspian Sea &amp;<br/>East Africa</div>
+        <div>
+          <div class="tr-title">Mobile Harbour Crane Acquisition</div>
+          <p class="tr-body">Full-cycle equipment sourcing and acquisition management for port operations. Scope: specification, market search, technical evaluation and acquisition management.</p>
+        </div>
+      </div>
+      <div class="tr-item reveal reveal-d1">
+        <div class="tr-region">UAE &amp;<br/>Singapore</div>
+        <div>
+          <div class="tr-title">Drydocking Management — Commercial &amp; Offshore Vessels</div>
+          <p class="tr-body">Full drydock management across UAE and international yards. Scope: scope-of-work development, yard tendering and selection, on-site supervision, class survey coordination, defect management and return-to-service sign-off.</p>
+        </div>
+      </div>
+      <div class="tr-item reveal">
+        <div class="tr-region">Offshore</div>
+        <div>
+          <div class="tr-title">Active Heave Compensation Crane Refurbishment</div>
+          <p class="tr-body">Technical management of refurbishment programmes for AHC cranes on offshore vessels — condition assessment, scope-of-work development, contractor selection, on-site supervision and return-to-service verification.</p>
+        </div>
+      </div>
+      <div class="tr-item reveal reveal-d1">
+        <div class="tr-region">South Africa &amp;<br/>Madagascar</div>
+        <div>
+          <div class="tr-title">Maritime Auditing — Mining Projects</div>
+          <p class="tr-body">Independent technical auditing of maritime operations supporting extractive industry projects. Assessment of vessel operations, maintenance standards and marine logistics performance against contract and regulatory requirements.</p>
+        </div>
+      </div>
+      <div class="tr-item reveal">
+        <div class="tr-region">Iraq</div>
+        <div>
+          <div class="tr-title">Maritime Project Management — Basra</div>
+          <p class="tr-body">On-the-ground project management for a maritime operation. Scope: stakeholder coordination, operational oversight and technical reporting in a complex operating environment.</p>
+        </div>
+      </div>
+      <div class="tr-item reveal reveal-d1">
+        <div class="tr-region">Europe to<br/>Middle East</div>
+        <div>
+          <div class="tr-title">Heavy Lift Transport — Mobile Harbour Cranes</div>
+          <p class="tr-body">Technical supervision of heavy lift sea transports. Scope: pre-transport condition surveys, load-out and seafastening approval, on-hire survey management, voyage oversight and discharge inspection at receiving ports.</p>
+        </div>
+      </div>
+      <div class="tr-item reveal">
+        <div class="tr-region">Multiple yards</div>
+        <div>
+          <div class="tr-title">Assembly &amp; Commissioning — Cutter Suction Dredgers</div>
+          <p class="tr-body">On-site assembly and commissioning supervision for CSD vessels delivered by Damen, Neptune Shipyards and Royal IHC — mechanical and hydraulic systems, control and instrumentation commissioning, sea trials and formal acceptance.</p>
+        </div>
+      </div>
+      <div class="tr-item reveal reveal-d1">
+        <div class="tr-region">Various</div>
+        <div>
+          <div class="tr-title">Towing Surveys — Marine Underwriters</div>
+          <p class="tr-body">Pre-towage surveys for marine underwriters prior to offshore and coastal towage operations — structural condition, towage plan review, towing gear inspection and condition reports for insurance coverage.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section id="coverage">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Geographic coverage</div>
+      <h2 class="sec-title">Where we operate.</h2>
+      <p class="coverage-note">Dutch Maritime maintains relationships with regional agents, port authorities, shipyards and equipment suppliers across these geographies, enabling rapid mobilisation for equipment searches and on-site assignments.</p>
+    </div>
+    <div class="coverage-grid reveal reveal-d1">
+      <div class="cov-item">
+        <div class="cov-region">Gulf / UAE / wider MENA</div>
+        <div class="cov-status"><span class="cov-dot cov-primary"></span>Primary</div>
+      </div>
+      <div class="cov-item">
+        <div class="cov-region">Caspian Region</div>
+        <div class="cov-status"><span class="cov-dot cov-active"></span>Active</div>
+      </div>
+      <div class="cov-item">
+        <div class="cov-region">East Africa</div>
+        <div class="cov-status"><span class="cov-dot cov-active"></span>Active</div>
+      </div>
+      <div class="cov-item">
+        <div class="cov-region">Iraq</div>
+        <div class="cov-status"><span class="cov-dot cov-active"></span>Active</div>
+      </div>
+      <div class="cov-item">
+        <div class="cov-region">Northwest Europe</div>
+        <div class="cov-status"><span class="cov-dot cov-periodic"></span>Periodic</div>
+      </div>
+      <div class="cov-item">
+        <div class="cov-region">Southeast Asia</div>
+        <div class="cov-status"><span class="cov-dot cov-periodic"></span>Periodic</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">Get in touch</div>
+      <h2 class="contact-h2">Ready to move your<br/>project forward?</h2>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-left reveal">
+        <div>
+          <p class="contact-sub">Whether you need a vessel valued, equipment sourced, a deal structured or a drydock supervised — get in touch. All enquiries are handled by Barry personally.</p>
+          <div class="contact-actions">
+            <a href="mailto:bme@dutch-maritime.com" class="btn btn-white"><span>Send an email</span></a>
+            <a href="tel:+971505584562" class="btn btn-ghost-white"><span>+971 50 558 4562</span></a>
+          </div>
+        </div>
+        <div class="contact-reg">
+          <div class="contact-reg-lbl">Registered company</div>
+          <div class="contact-reg-text">
+            Dutch Maritime Consultancy &amp; Commercial Brokers LLC<br/>
+            Mainland UAE &middot; Department of Economic Development<br/>
+            Office 708, Business Village, Block B<br/>
+            Deira &middot; PO Box 88898 &middot; Dubai &middot; UAE
+          </div>
+        </div>
+      </div>
+      <div class="contact-right reveal reveal-d1">
+        <div class="cd-list">
+          <div class="cd-item">
+            <div class="cd-label">Email</div>
+            <a href="mailto:bme@dutch-maritime.com" class="cd-value">bme@dutch-maritime.com</a>
+          </div>
+          <div class="cd-item">
+            <div class="cd-label">Mobile</div>
+            <a href="tel:+971505584562" class="cd-value">+971 50 558 4562</a>
+          </div>
+          <div class="cd-item">
+            <div class="cd-label">Location</div>
+            <div class="cd-value">Dubai, UAE</div>
+            <div class="cd-note">Office 708, Business Village, Block B<br/>Deira &middot; PO Box 88898</div>
+          </div>
+          <div class="cd-item">
+            <div class="cd-label">Engagement terms</div>
+            <div class="cd-light">Fixed-fee scopes, day-rate assignments, or success-fee commercial briefs. All terms agreed in writing prior to commencement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-l">&copy; 2025 Dutch Maritime Consultancy &amp; Commercial Brokers LLC. All rights reserved.</div>
+  <div class="footer-r">Dubai &middot; UAE</div>
 </footer>
 
+<script>
+  /* Nav — add scrolled class */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  /* Scroll reveal */
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => io.observe(el));
+
+  /* Service card mouse-follow glow */
+  document.querySelectorAll('.svc').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+      card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  });
+</script>
 </body>
 </html>
