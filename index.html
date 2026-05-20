@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dutch Maritime — The Consultant & Broker That Works With You</title>
+<meta name="description" content="Port equipment acquisition, marina development and maritime project advisory. Dutch Maritime Consultancy & Commercial Brokers LLC." />
+
+<style>
+  :root {
+    --orange:      #F47A20;
+    --orange-deep: #D85F0E;
+    --orange-tint: #FCE6D2;
+    --blue:        #1067AA;
+    --blue-deep:   #0A4A7D;
+    --blue-tint:   #D7E4EF;
+    --ink:         #141414;
+    --ink-2:       #4A4A4A;
+    --ink-3:       #8A8A8A;
+    --paper:       #FAF7F2;
+    --paper-2:     #F1ECE3;
+    --line:        #E2DCD0;
+    --ff: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--ff); background: var(--paper); color: var(--ink); line-height: 1.55; overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 56px; height: 72px;
+  }
+  .nav-logo {
+    display: inline-flex; flex-direction: column; align-items: flex-start;
+    font-weight: 700; color: var(--orange); line-height: 0.85;
+    text-transform: lowercase; letter-spacing: -0.04em;
+    font-size: 24px; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .nav-logo:hover { opacity: 0.75; }
+  .nav-logo .wbar { width: 100%; height: 3px; background: var(--blue); margin: 4px 0 2px; }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-3); text-decoration: none;
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+  .nav-cta {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff; background: var(--blue); padding: 10px 24px;
+    text-decoration: none; transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--blue-deep); }
+
+  /* ─── SHARED ─── */
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 56px; }
+  section { padding-top: 104px; padding-bottom: 104px; }
+
+  .eyebrow {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--orange); flex-shrink: 0;
+  }
+  h2.title {
+    font-weight: 700; font-size: clamp(36px, 4.5vw, 64px);
+    line-height: 0.96; letter-spacing: -0.03em; color: var(--ink);
+  }
+  .btn {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 14px 32px; text-decoration: none; display: inline-block;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .btn-solid { color: #fff; background: var(--orange); }
+  .btn-solid:hover { background: var(--orange-deep); }
+  .btn-outline { color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn-outline:hover { color: var(--orange); border-color: var(--orange); }
+
+  /* ─── HERO — full width, left aligned ─── */
+  #hero {
+    min-height: 100dvh;
+    display: flex; align-items: center;
+    padding-top: 72px;
+    border-bottom: 8px solid var(--blue);
+  }
+
+  .hero-left {
+    padding: 96px 56px;
+    display: flex; flex-direction: column; justify-content: center;
+    max-width: 820px;
+  }
+  .hero-region {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 40px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-region::before {
+    content: ''; width: 24px; height: 2px; background: var(--orange);
+  }
+
+  .hero-slogan {
+    font-size: clamp(44px, 6vw, 88px);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 0.97;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .hero-slogan em { font-style: normal; color: var(--orange); }
+
+  .hero-rule { width: 56px; height: 5px; background: var(--blue); margin: 36px 0; }
+
+  .hero-sub {
+    font-size: 18px; color: var(--ink-2); max-width: 560px; line-height: 1.7;
+    margin-bottom: 48px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--paper); }
+  .services-header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: end; margin-bottom: 64px;
+  }
+  .services-intro {
+    font-size: 18px; color: var(--ink-2); line-height: 1.7;
+    align-self: end;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; border: 1px solid var(--line);
+  }
+  .svc {
+    padding: 48px 40px; border-right: 1px solid var(--line);
+    display: flex; flex-direction: column;
+    transition: background 0.2s;
+  }
+  .svc:last-child { border-right: none; }
+  .svc:hover { background: var(--paper-2); }
+  .svc.featured { background: var(--blue-deep); border-color: var(--blue-deep); }
+  .svc.featured:hover { background: var(--blue); }
+
+  .svc-num {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; margin-bottom: 40px;
+  }
+  .svc.featured .svc-num { color: var(--orange); }
+  .svc:not(.featured) .svc-num { color: var(--ink-3); }
+
+  .svc-icon { margin-bottom: 28px; flex-shrink: 0; }
+
+  .svc-title {
+    font-weight: 700; font-size: 22px; letter-spacing: -0.015em;
+    line-height: 1.15; margin-bottom: 16px;
+  }
+  .svc.featured .svc-title { color: #fff; }
+  .svc:not(.featured) .svc-title { color: var(--ink); }
+
+  .svc-body {
+    font-size: 14px; line-height: 1.7; flex: 1;
+  }
+  .svc.featured .svc-body { color: rgba(255,255,255,0.6); }
+  .svc:not(.featured) .svc-body { color: var(--ink-2); }
+
+  .svc-list {
+    margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .svc.featured .svc-list { border-color: rgba(255,255,255,0.12); }
+  .svc-list-item {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .svc.featured .svc-list-item { color: rgba(255,255,255,0.35); }
+  .svc:not(.featured) .svc-list-item { color: var(--ink-3); }
+  .svc-list-item::before {
+    content: ''; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--orange); flex-shrink: 0;
+  }
+
+  /* ─── STATS ─── */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    background: var(--ink);
+  }
+  .stat-cell {
+    padding: 44px 40px;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-n {
+    font-weight: 700; font-size: 48px; color: var(--orange);
+    line-height: 1; letter-spacing: -0.03em;
+  }
+  .stat-l {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35); margin-top: 10px; line-height: 1.6;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--paper-2); }
+  .about-layout {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 96px; align-items: start; margin-top: 64px;
+  }
+
+  /* left: facts panel */
+  .facts-panel { display: flex; flex-direction: column; gap: 0; }
+  .fact-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 18px 0; border-top: 1px solid var(--line); gap: 16px;
+  }
+  .fact-row:last-child { border-bottom: 1px solid var(--line); }
+  .fact-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-3); flex-shrink: 0;
+  }
+  .fact-val { font-size: 14px; font-weight: 700; color: var(--ink); text-align: right; }
+
+  .about-intro {
+    font-size: 18px; line-height: 1.7; color: var(--ink);
+    padding-left: 24px; border-left: 3px solid var(--orange);
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--paper); }
+  .contact-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 96px; align-items: start; margin-top: 64px;
+  }
+  .contact-intro { font-size: 17px; color: var(--ink-2); line-height: 1.7; margin-bottom: 40px; }
+  .contact-rows { display: flex; flex-direction: column; }
+  .cr {
+    display: flex; flex-direction: column;
+    padding: 20px 0; border-top: 1px solid var(--line);
+  }
+  .cr:last-child { border-bottom: 1px solid var(--line); }
+  .cr-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px;
+  }
+  .cr-val { font-size: 15px; font-weight: 700; color: var(--ink); text-decoration: none; transition: color 0.15s; }
+  a.cr-val:hover { color: var(--orange); }
+  .cr-sub { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+
+  .contact-map-wrap { display: flex; flex-direction: column; }
+  .contact-map-wrap svg { width: 100%; display: block; }
+  .map-addr {
+    background: var(--blue-deep); padding: 28px 32px;
+    font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55);
+  }
+  .map-addr strong { color: #fff; display: block; margin-bottom: 4px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); padding: 40px 56px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .foot-logo {
+    display: inline-flex; flex-direction: column; align-items: flex-start;
+    font-weight: 700; color: var(--orange); line-height: 0.85;
+    text-transform: lowercase; letter-spacing: -0.04em; font-size: 20px;
+  }
+  .foot-logo .wbar { width: 100%; height: 2px; background: rgba(255,255,255,0.3); margin: 3px 0 2px; }
+  .foot-copy {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(255,255,255,0.2);
+  }
+  .foot-links { display: flex; gap: 28px; list-style: none; }
+  .foot-links a {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.15s;
+  }
+  .foot-links a:hover { color: var(--orange); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1100px) {
+    .hero-left { max-width: none; }
+    .services-header { grid-template-columns: 1fr; gap: 24px; }
+    .about-layout { grid-template-columns: 1fr; gap: 56px; }
+    .contact-layout { grid-template-columns: 1fr; gap: 56px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    .stat-cell { border-bottom: 1px solid rgba(255,255,255,0.07); }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .wrap { padding: 0 24px; }
+    section { padding-top: 72px; padding-bottom: 72px; }
+    .hero-left { padding: 64px 24px; }
+    .services-grid { grid-template-columns: 1fr; border: none; gap: 2px; background: var(--line); }
+    .svc { border-right: none; border-bottom: 1px solid var(--line); }
+    footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+  }
+  @media (max-width: 480px) {
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <span>dutch</span>
+    <span class="wbar"></span>
+    <span>maritime</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">Background</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:BME@dutch-maritime.com" class="nav-cta">Get in touch</a>
+</nav>
+
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+
+  <!-- left: copy -->
+  <div class="hero-left">
+    <div class="hero-region">Gulf · MENA · International</div>
+
+    <h1 class="hero-slogan">
+      The consultant<br/>
+      &amp; broker that<br/>
+      <em>works with you.</em>
+    </h1>
+
+    <div class="hero-rule"></div>
+
+    <p class="hero-sub">
+      Port equipment acquisition, marina development and maritime project
+      advisory. Hands-on expertise applied directly — from first call to final delivery.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-solid">What we do</a>
+      <a href="#contact" class="btn btn-outline">Talk to us</a>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="wrap">
+
+    <div class="services-header">
+      <div>
+        <div class="eyebrow">What we do</div>
+        <h2 class="title">Where we add<br/>the most value.</h2>
+      </div>
+      <p class="services-intro">
+        Three focused areas where commercial insight and hands-on technical
+        knowledge are both required — not one or the other.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- 01 Port & Terminal Equipment Acquisition — featured -->
+      <div class="svc featured">
+        <div class="svc-num">01 · Primary focus</div>
+        <div class="svc-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="30" width="40" height="12" rx="1" stroke="#F47A20" stroke-width="2.2"/>
+            <path d="M9 30 L9 19 L24 13 L39 19 L39 30" stroke="#F47A20" stroke-width="2.2" stroke-linejoin="round"/>
+            <path d="M18 30 L18 21 L30 21 L30 30" stroke="rgba(255,255,255,0.25)" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M24 13 L24 6" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M21 8 L24 6 L27 8" stroke="#F47A20" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="svc-title">Port &amp; Terminal<br/>Equipment Acquisition</div>
+        <div class="svc-body">
+          We help clients buy the right equipment for port and terminal
+          operations. Tugs, mobile harbour cranes, terminal handling equipment
+          and port automation systems — we know the market, the manufacturers
+          and what each asset is worth.<br/><br/>
+          From spec to survey to contract, we represent your side only.
+        </div>
+        <div class="svc-list">
+          <div class="svc-list-item">Tugs &amp; harbour vessels</div>
+          <div class="svc-list-item">Mobile harbour cranes</div>
+          <div class="svc-list-item">Terminal handling equipment</div>
+          <div class="svc-list-item">Port automation systems</div>
+          <div class="svc-list-item">Technical due diligence</div>
+        </div>
+      </div>
+
+      <!-- 02 Marina Development -->
+      <div class="svc">
+        <div class="svc-num">02</div>
+        <div class="svc-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M5 36 C13 26 21 40 29 30 C35 22 39 28 43 26" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M5 42 L43 42" stroke="#1067AA" stroke-width="2.2" stroke-linecap="round"/>
+            <rect x="17" y="14" width="14" height="16" rx="1" stroke="#141414" stroke-width="1.8" opacity="0.25"/>
+            <path d="M24 14 L24 7" stroke="#F47A20" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M21 9 L24 7 L27 9" stroke="#F47A20" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="svc-title">Marina<br/>Development</div>
+        <div class="svc-body">
+          We help developers execute their marina development plans. From
+          site assessment through contractor selection to final delivery —
+          we bring the technical and commercial expertise that turns a plan
+          on paper into a working marina.
+        </div>
+        <div class="svc-list">
+          <div class="svc-list-item">Development plan execution</div>
+          <div class="svc-list-item">Site assessment &amp; layout</div>
+          <div class="svc-list-item">Equipment specification</div>
+          <div class="svc-list-item">Contractor management</div>
+          <div class="svc-list-item">Project delivery</div>
+        </div>
+      </div>
+
+      <!-- 03 Maritime Project Advisory -->
+      <div class="svc">
+        <div class="svc-num">03</div>
+        <div class="svc-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M5 32 L11 20 L24 26 L37 14 L43 20" stroke="#1067AA" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 38 L43 38" stroke="#1067AA" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="24" cy="19" r="5" stroke="#F47A20" stroke-width="2.2"/>
+            <path d="M24 16.5 L24 19 L25.5 20.5" stroke="#F47A20" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="svc-title">Maritime Project<br/>Advisory</div>
+        <div class="svc-body">
+          Project management, technical review, yard and port interface — the
+          consultancy that sits outside standard broking. If you need someone
+          who understands both the commercial side and the vessel, that is us.
+        </div>
+        <div class="svc-list">
+          <div class="svc-list-item">Project management</div>
+          <div class="svc-list-item">Technical review</div>
+          <div class="svc-list-item">Yard &amp; port liaison</div>
+          <div class="svc-list-item">Vessel &amp; equipment brokerage</div>
+          <div class="svc-list-item">Commercial representation</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── STATS ─── -->
+<div class="stats-bar">
+  <div class="stat-cell">
+    <div class="stat-n">30+</div>
+    <div class="stat-l">Years maritime<br/>experience</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n">3</div>
+    <div class="stat-l">Continents<br/>of project work</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n">MENA</div>
+    <div class="stat-l">Primary region —<br/>Gulf · Caspian · Africa</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-n">1</div>
+    <div class="stat-l">Point of contact.<br/>Start to finish.</div>
+  </div>
+</div>
+
+
+<!-- ─── ABOUT / BACKGROUND ─── -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">Our background</div>
+    <h2 class="title">Built on thirty<br/>years at sea.</h2>
+
+    <div class="about-layout">
+
+      <!-- left: facts -->
+      <div>
+        <div class="facts-panel">
+          <div class="fact-row">
+            <span class="fact-label">Founded</span>
+            <span class="fact-val">Dubai, UAE</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Origins</span>
+            <span class="fact-val">Netherlands · Rotterdam</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Sectors</span>
+            <span class="fact-val">Dredging · Port · Offshore · Marine</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Region</span>
+            <span class="fact-val">MENA · NW Europe · Caspian</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Structure</span>
+            <span class="fact-val">Private · Owner-operated</span>
+          </div>
+          <div class="fact-row">
+            <span class="fact-label">Languages</span>
+            <span class="fact-val">English · Dutch</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: content -->
+      <div class="about-content">
+
+        <p class="about-intro">
+          Dutch Maritime is a private, owner-operated consultancy and brokerage
+          built on three decades of hands-on maritime work — from technical
+          superintendent on dredging projects across the Middle East and Europe,
+          to managing partner in maritime consultancy in Dubai. The experience
+          behind the company is practical, not theoretical.
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2 class="title">Let's talk.</h2>
+
+    <div class="contact-layout">
+      <div>
+        <p class="contact-intro">
+          Got a port, a marina, or a maritime equipment purchase you want to
+          think through? Send us the brief. We give straight answers.
+        </p>
+        <div class="contact-rows">
+          <div class="cr">
+            <span class="cr-label">Email</span>
+            <a href="mailto:BME@dutch-maritime.com" class="cr-val">BME@dutch-maritime.com</a>
+          </div>
+          <div class="cr">
+            <span class="cr-label">Phone</span>
+            <a href="tel:+971505584562" class="cr-val">+971 50 558 4562</a>
+          </div>
+          <div class="cr">
+            <span class="cr-label">Region</span>
+            <span class="cr-val">Gulf · MENA · International</span>
+          </div>
+        </div>
+        <a href="mailto:BME@dutch-maritime.com" class="btn btn-solid" style="margin-top:40px;">Send a message</a>
+      </div>
+
+      <div class="contact-map-wrap">
+        <!--
+          SVG map — Arabian Gulf region
+          Coordinate system: viewBox 0 0 700 480
+          Lon 43°E–62°E → x = (lon−43)/19×700
+          Lat 12°N–32°N → y = (32−lat)/20×480
+          Dubai 55.3°E 25.2°N → cx=453 cy=163
+        -->
+        <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg"
+             aria-label="Map of the Arabian Gulf region with Dubai marked">
+          <defs>
+            <pattern id="mgrid" width="28" height="28" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r="0.8" fill="rgba(16,103,170,0.07)"/>
+            </pattern>
+          </defs>
+
+          <!-- Sea -->
+          <rect width="700" height="480" fill="#C8DCF0"/>
+          <rect width="700" height="480" fill="url(#mgrid)"/>
+
+          <!-- Northern landmass — Iran / Iraq -->
+          <path d="M0,0 L700,0 L700,192 L626,168 L553,156
+                   L497,132 L490,115 L405,120 L332,108
+                   L295,74 L258,72 L220,50 L184,48 L0,48 Z"
+                fill="#EBE4D5" stroke="#B8CEDF" stroke-width="0.8"/>
+
+          <!-- Arabian Peninsula -->
+          <path d="M0,72
+                   L147,62 L221,108 L258,132
+                   L283,149 L298,154 L295,138 L313,138 L324,149 L324,173
+                   L332,180 L349,192 L386,192 L405,185 L424,180
+                   L453,163 L461,156 L479,151 L492,138
+                   L490,168 L516,228 L532,264 L553,288
+                   L516,360 L442,408 L368,432 L258,468
+                   L0,480 Z"
+                fill="#EBE4D5" stroke="#B8CEDF" stroke-width="0.8"/>
+
+          <!-- Water labels -->
+          <text x="298" y="116"
+                font-family="Helvetica Neue,Helvetica,Arial,sans-serif"
+                font-size="9" fill="rgba(16,103,170,0.42)"
+                letter-spacing="0.18em" text-anchor="middle">ARABIAN GULF</text>
+          <text x="606" y="232"
+                font-family="Helvetica Neue,Helvetica,Arial,sans-serif"
+                font-size="8" fill="rgba(16,103,170,0.38)"
+                letter-spacing="0.14em" text-anchor="middle"
+                transform="rotate(-22,606,232)">GULF OF OMAN</text>
+
+          <!-- Dubai — pulse ring + dot + label -->
+          <circle cx="453" cy="163" r="22" fill="rgba(244,122,32,0.12)"/>
+          <circle cx="453" cy="163" r="7"  fill="#F47A20"/>
+          <text x="467" y="159"
+                font-family="Helvetica Neue,Helvetica,Arial,sans-serif"
+                font-size="10" font-weight="700" fill="#141414"
+                letter-spacing="0.1em">DUBAI</text>
+        </svg>
+
+        <div class="map-addr">
+          <strong>Dutch Maritime Consultancy &amp; Commercial Brokers LLC</strong>
+          Office No. 708, Business Village, Block B<br/>
+          PO Box 88898 · Dubai · UAE
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="foot-logo">
+    <span>dutch</span>
+    <span class="wbar"></span>
+    <span>maritime</span>
+  </div>
+  <span class="foot-copy">&copy; 2026 Dutch Maritime Consultancy &amp; Commercial Brokers LLC · UAE</span>
+  <ul class="foot-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">Background</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
