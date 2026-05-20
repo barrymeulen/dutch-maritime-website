@@ -96,29 +96,27 @@
   }
   .hero-inner {
     flex: 1;
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    gap: 64px;
+    display: flex;
     align-items: center;
     max-width: 1300px;
     margin: 0 auto;
-    padding: 72px 60px;
+    padding: 80px 60px;
     width: 100%;
   }
-  .hero-left { display: flex; flex-direction: column; }
+  .hero-left { display: flex; flex-direction: column; max-width: 720px; }
   .hero-region {
     font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--ink-3); display: flex; align-items: center; gap: 12px; margin-bottom: 44px;
   }
   .hero-region::before { content: ''; width: 28px; height: 2px; background: var(--orange); flex-shrink: 0; }
   .hero-h1 {
-    font-size: clamp(44px, 5.5vw, 80px);
+    font-size: clamp(48px, 6vw, 92px);
     font-weight: 700; letter-spacing: -0.035em; line-height: 0.95;
     color: var(--ink); margin-bottom: 36px;
   }
   .hero-h1 em { font-style: normal; color: var(--orange); }
   .hero-sub {
-    font-size: 17px; color: var(--ink-2); max-width: 500px;
+    font-size: 18px; color: var(--ink-2); max-width: 560px;
     line-height: 1.75; margin-bottom: 48px;
   }
   .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
@@ -165,45 +163,6 @@
   .btn-ghost-white span { position: relative; z-index: 1; transition: color 0.35s; }
   .btn-ghost-white:hover::before { transform: scaleX(1); }
   .btn-ghost-white:hover span { color: #fff; }
-
-  /* Hero bento */
-  .hero-bento {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 2px;
-    background: var(--line);
-    align-self: stretch;
-    min-height: 360px;
-  }
-  .hb {
-    background: var(--paper-2);
-    padding: 36px 32px;
-    display: flex; flex-direction: column;
-    transition: background 0.3s var(--ease);
-  }
-  .hb:hover { background: #EDE8DC; }
-  .hb-dark {
-    background: var(--blue-deep);
-    grid-column: 1;
-    grid-row: 1 / 3;
-    transition: background 0.3s var(--ease);
-  }
-  .hb-dark:hover { background: var(--blue); }
-  .hb-orange { background: var(--orange-tint); }
-  .hb-orange:hover { background: #F5CEAA; }
-  .hb-label {
-    font-size: 9px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--ink-3);
-  }
-  .hb-dark .hb-label { color: rgba(255,255,255,0.3); }
-  .hb-orange .hb-label { color: var(--orange-deep); }
-  .hb-title {
-    font-size: 14px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25;
-    color: var(--ink); margin-top: auto; padding-top: 28px;
-  }
-  .hb-dark .hb-title { color: #fff; font-size: 16px; }
-  .hb-orange .hb-title { color: var(--orange-deep); }
 
   /* ─── MARQUEE ─── */
   .marquee-strip {
@@ -259,8 +218,7 @@
   .services-intro { font-size: 16px; color: var(--ink-2); line-height: 1.75; align-self: end; }
   .services-bento {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2px;
     background: var(--line);
   }
@@ -279,7 +237,7 @@
     transition: opacity 0.4s var(--ease);
   }
   .svc:hover::after { opacity: 1; }
-  .svc-01 { grid-row: 1 / 3; background: var(--blue-deep); transition: background 0.3s var(--ease); }
+  .svc-01 { background: var(--blue-deep); transition: background 0.3s var(--ease); }
   .svc-01:hover { background: var(--blue); }
   .svc-01::after {
     background: radial-gradient(circle 380px at var(--mx, 60%) var(--my, 60%), rgba(255,255,255,0.04), transparent 68%);
@@ -403,37 +361,17 @@
   .about-body { font-size: 15px; color: var(--ink-2); line-height: 1.8; }
   .about-body + .about-body { margin-top: 18px; }
 
-  .career-table {
-    width: 100%; border-collapse: collapse;
-    margin-top: 40px; font-size: 13px;
+  .about-fact {
+    padding: 20px 0; border-bottom: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 4px;
   }
-  .career-table th {
-    font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-3); padding: 0 16px 12px 0; text-align: left;
-    border-bottom: 1.5px solid var(--ink);
+  .about-fact:first-child { border-top: 1px solid var(--line); }
+  .about-fact-lbl {
+    font-size: 9.5px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--orange);
   }
-  .career-table th:last-child { padding-right: 0; }
-  .career-table td {
-    padding: 12px 16px 12px 0; color: var(--ink-2);
-    border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45;
-  }
-  .career-table td:last-child { padding-right: 0; }
-  .career-table td:first-child { color: var(--ink-3); white-space: nowrap; }
-
-  .about-creds {
-    background: var(--paper-2); border: 1px solid var(--line);
-    padding: 32px; margin-bottom: 40px;
-  }
-  .cred-lbl {
-    font-size: 9.5px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--ink-3); margin-bottom: 16px;
-  }
-  .cred-item {
-    font-size: 13.5px; font-weight: 700; color: var(--ink); line-height: 1.5;
-    padding: 10px 0; border-bottom: 1px solid var(--line);
-  }
-  .cred-item:last-child { border-bottom: none; padding-bottom: 0; }
-  .cred-sub { font-size: 12px; font-weight: 400; color: var(--ink-3); margin-top: 2px; }
+  .about-fact-val { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.45; }
+  .about-fact-note { font-size: 13px; color: var(--ink-3); line-height: 1.55; margin-top: 2px; }
 
   .expertise-grid {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -576,11 +514,9 @@
     nav { padding: 0 32px; }
     .nav-links { gap: 24px; }
     .wrap { padding: 0 32px; }
-    .hero-inner { grid-template-columns: 1fr; padding: 60px 32px; gap: 48px; }
-    .hero-bento { min-height: 280px; }
+    .hero-inner { padding: 60px 32px; }
     .services-header { grid-template-columns: 1fr; gap: 24px; }
     .services-bento { grid-template-columns: 1fr; }
-    .svc-01 { grid-row: auto; }
     .stats-grid { grid-template-columns: 1fr 1fr; gap: 48px 0; }
     .stat-hero-box { padding-right: 0; border-right: none; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.07); grid-column: 1 / 3; }
     .stat-box { padding: 0 32px; }
@@ -594,8 +530,6 @@
   }
   @media (max-width: 640px) {
     .hero-h1 { font-size: clamp(38px, 10vw, 56px); }
-    .hero-bento { grid-template-columns: 1fr; grid-template-rows: auto; }
-    .hb-dark { grid-column: auto; grid-row: auto; }
     .pillars-grid { grid-template-columns: 1fr; }
     .pillar { border-right: none; border-bottom: 1px solid var(--line); }
     .pillar:last-child { border-bottom: none; }
@@ -642,20 +576,6 @@
       <div class="hero-actions">
         <a href="#contact" class="btn btn-solid"><span>Start a conversation</span></a>
         <a href="#services" class="btn btn-outline"><span>Our services</span></a>
-      </div>
-    </div>
-    <div class="hero-bento">
-      <div class="hb hb-dark">
-        <div class="hb-label">01 &middot; Services</div>
-        <div class="hb-title">Port &amp; Terminal Equipment Acquisition</div>
-      </div>
-      <div class="hb hb-orange">
-        <div class="hb-label">02 &middot; Services</div>
-        <div class="hb-title">Technical Maintenance Management</div>
-      </div>
-      <div class="hb">
-        <div class="hb-label">03 &middot; Services</div>
-        <div class="hb-title">Maritime Project Advisory</div>
       </div>
     </div>
   </div>
@@ -797,44 +717,36 @@
 
       <div class="reveal">
         <div class="eyebrow">About</div>
-        <h2 class="sec-title">Three decades at the sharp end.</h2>
-        <p class="about-lead">Dutch Maritime Consultancy &amp; Commercial Brokers LLC is a private, owner-operated advisory and brokerage firm based in Dubai, UAE — licensed under the UAE Department of Economic Development.</p>
-        <p class="about-body">Founded and led by Barry van der Meulen, the firm provides independent technical and commercial advisory from equipment acquisition and drydock management to full maritime project management across the Gulf, MENA, Caspian, East Africa and northwest Europe.</p>
-        <p class="about-body">The founding premise is straightforward: the maritime sector is served by an abundance of vendors but a shortage of genuinely independent advisors. Dutch Maritime holds no inventory, has no agency agreements with equipment manufacturers, and receives no commission from third-party suppliers. Every recommendation is made on technical and commercial merit alone.</p>
-
-        <table class="career-table">
-          <thead>
-            <tr>
-              <th>Period</th>
-              <th>Role</th>
-              <th>Organisation</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>1997–2008</td><td>Technical Superintendent</td><td>Van Oord / Ballast Nedam</td></tr>
-            <tr><td>2008–2014</td><td>Technical Manager</td><td>Gulf Cobla</td></tr>
-            <tr><td>2014–2016</td><td>Area Manager, MENA</td><td>Jebsen &amp; Jessen</td></tr>
-            <tr><td>2016–2017</td><td>UAE Representative</td><td>Dredgeyard</td></tr>
-            <tr><td>2017–2022</td><td>Founder</td><td>Dredge Maritime Consultancy DWC-LLC</td></tr>
-            <tr><td>2022–present</td><td>Founder &amp; Managing Director</td><td>Dutch Maritime LLC</td></tr>
-          </tbody>
-        </table>
+        <h2 class="sec-title">Independent advice.<br/>No conflicts.</h2>
+        <p class="about-lead">Dutch Maritime Consultancy &amp; Commercial Brokers LLC is a private advisory and brokerage firm based in Dubai, UAE — licensed under the UAE Department of Economic Development.</p>
+        <p class="about-body">The firm provides independent technical and commercial advisory across the full maritime project lifecycle: from equipment acquisition and drydock management to project feasibility, subcontractor auditing and vessel brokerage. Clients include owners, operators, developers and project sponsors across the Gulf, MENA, Caspian region, East Africa, Iraq and northwest Europe.</p>
+        <p class="about-body">The founding principle is straightforward: the maritime sector is served by an abundance of vendors but a shortage of genuinely independent advisors. Most consultants sell something — or are affiliated with firms that do. Dutch Maritime holds no inventory, has no agency agreements with equipment manufacturers, and receives no commission from third-party suppliers. Every recommendation is made on technical and commercial merit alone.</p>
+        <p class="about-body" style="margin-top: 18px;">All engagements are delivered by a single point of contact from initial brief to final handover — structured as fixed-fee scopes, day-rate assignments, or success-fee commercial briefs, all agreed in writing prior to commencement.</p>
       </div>
 
       <div class="reveal reveal-d1">
-        <div class="about-creds">
-          <div class="cred-lbl">Academic background</div>
-          <div class="cred-item">
-            B.Sc. Mechanical Engineering
-            <div class="cred-sub">Higher Institute of Technology, Haarlem, Netherlands &middot; 1997</div>
-          </div>
-          <div class="cred-item">
-            Executive MBA
-            <div class="cred-sub">Cass Business School, City University of London &middot; 2012</div>
-          </div>
+        <div class="eyebrow" style="margin-bottom: 20px;">Operating basis</div>
+        <div class="about-fact">
+          <div class="about-fact-lbl">Registered</div>
+          <div class="about-fact-val">Dutch Maritime Consultancy &amp; Commercial Brokers LLC</div>
+          <div class="about-fact-note">Mainland UAE &middot; Department of Economic Development</div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-lbl">Location</div>
+          <div class="about-fact-val">Dubai, UAE</div>
+          <div class="about-fact-note">Office 708, Business Village, Block B, Deira</div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-lbl">Primary markets</div>
+          <div class="about-fact-val">Gulf &middot; MENA &middot; Caspian &middot; East Africa &middot; Iraq</div>
+        </div>
+        <div class="about-fact">
+          <div class="about-fact-lbl">Associates</div>
+          <div class="about-fact-val">Trusted network of independent specialists</div>
+          <div class="about-fact-note">Marine surveyors, naval architects, classification engineers and maritime lawyers — mobilised as required on a vetted, case-by-case basis.</div>
         </div>
 
-        <div class="eyebrow" style="margin-bottom: 14px;">Technical expertise</div>
+        <div class="eyebrow" style="margin-bottom: 14px; margin-top: 40px;">Technical capability</div>
         <div class="expertise-grid">
           <div class="exp-item">TSHD &amp; CSD systems</div>
           <div class="exp-item">Backhoe dredgers</div>
