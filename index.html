@@ -248,8 +248,6 @@
   a.cr-val:hover { color: var(--orange); }
   .cr-sub { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
 
-  .contact-map-wrap { display: flex; flex-direction: column; }
-  .contact-map-wrap svg { width: 100%; display: block; }
   .map-addr {
     background: var(--blue-deep); padding: 28px 32px;
     font-size: 13px; line-height: 1.8; color: rgba(255,255,255,0.55);
@@ -560,68 +558,10 @@
         <a href="mailto:BME@dutch-maritime.com" class="btn btn-solid" style="margin-top:40px;">Send a message</a>
       </div>
 
-      <div class="contact-map-wrap">
-        <!--
-          SVG map — Arabian Gulf region
-          Coordinate system: viewBox 0 0 700 480
-          Lon 43°E–62°E → x = (lon−43)/19×700
-          Lat 12°N–32°N → y = (32−lat)/20×480
-          Dubai 55.3°E 25.2°N → cx=453 cy=163
-        -->
-        <svg viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg"
-             aria-label="Map of the Arabian Gulf region with Dubai marked">
-          <defs>
-            <pattern id="mgrid" width="28" height="28" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="0.8" fill="rgba(16,103,170,0.07)"/>
-            </pattern>
-          </defs>
-
-          <!-- Sea -->
-          <rect width="700" height="480" fill="#C8DCF0"/>
-          <rect width="700" height="480" fill="url(#mgrid)"/>
-
-          <!-- Northern landmass — Iran / Iraq -->
-          <path d="M0,0 L700,0 L700,192 L626,168 L553,156
-                   L497,132 L490,115 L405,120 L332,108
-                   L295,74 L258,72 L220,50 L184,48 L0,48 Z"
-                fill="#EBE4D5" stroke="#B8CEDF" stroke-width="0.8"/>
-
-          <!-- Arabian Peninsula -->
-          <path d="M0,72
-                   L147,62 L221,108 L258,132
-                   L283,149 L298,154 L295,138 L313,138 L324,149 L324,173
-                   L332,180 L349,192 L386,192 L405,185 L424,180
-                   L453,163 L461,156 L479,151 L492,138
-                   L490,168 L516,228 L532,264 L553,288
-                   L516,360 L442,408 L368,432 L258,468
-                   L0,480 Z"
-                fill="#EBE4D5" stroke="#B8CEDF" stroke-width="0.8"/>
-
-          <!-- Water labels -->
-          <text x="298" y="116"
-                font-family="Helvetica Neue,Helvetica,Arial,sans-serif"
-                font-size="9" fill="rgba(16,103,170,0.42)"
-                letter-spacing="0.18em" text-anchor="middle">ARABIAN GULF</text>
-          <text x="606" y="232"
-                font-family="Helvetica Neue,Helvetica,Arial,sans-serif"
-                font-size="8" fill="rgba(16,103,170,0.38)"
-                letter-spacing="0.14em" text-anchor="middle"
-                transform="rotate(-22,606,232)">GULF OF OMAN</text>
-
-          <!-- Dubai — pulse ring + dot + label -->
-          <circle cx="453" cy="163" r="22" fill="rgba(244,122,32,0.12)"/>
-          <circle cx="453" cy="163" r="7"  fill="#F47A20"/>
-          <text x="467" y="159"
-                font-family="Helvetica Neue,Helvetica,Arial,sans-serif"
-                font-size="10" font-weight="700" fill="#141414"
-                letter-spacing="0.1em">DUBAI</text>
-        </svg>
-
-        <div class="map-addr">
-          <strong>Dutch Maritime Consultancy &amp; Commercial Brokers LLC</strong>
-          Office No. 708, Business Village, Block B<br/>
-          PO Box 88898 · Dubai · UAE
-        </div>
+      <div class="map-addr" style="background:var(--blue-deep);padding:40px 40px;border:1px solid var(--line);">
+        <strong>Dutch Maritime Consultancy &amp; Commercial Brokers LLC</strong>
+        Office No. 708, Business Village, Block B<br/>
+        PO Box 88898 · Dubai · UAE
       </div>
     </div>
   </div>
